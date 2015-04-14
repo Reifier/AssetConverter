@@ -29,11 +29,9 @@ CONNECTION = None
 logging.debug('The user to be logged in: %s', config.database['user'])
 
 
-"""A function that creates a cursor with a certain user"""
 CONNECTION = connector.connect(**config.database)
 CURSOR = CONNECTION.cursor()
 logging.debug('The current DB user is: %s', CONNECTION.user)
-
 
 
 def create_database(cursor):
@@ -46,3 +44,8 @@ def create_database(cursor):
 
 
 create_database(CURSOR)
+
+CURRENT_LINE = CSV_FILE.readline()
+logging.info('The current line: %s', CURRENT_LINE)
+LIST_OF_VALUES = CURRENT_LINE.split()
+print LIST_OF_VALUES
