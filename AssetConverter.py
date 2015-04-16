@@ -51,24 +51,19 @@ CURSOR = CONNECTION.cursor()
 
 
 
-CURRENT_LINE = CSV_FILE.readline()
 logging.info('The current line: %s', CURRENT_LINE)
 #Parse the CSV file
-f = open(CSV_PATH, 'rt')
-reader = csv.reader(f)
+CSV_FILE = open(CSV_PATH, 'rt')
+reader = csv.reader(CSV_FILE)
 CURRENT_LINE = reader.next()
 CURRENT_LINE = reader.next()
 print CURRENT_LINE
 
 print CURRENT_LINE[6]
-date = datetime.strptime(CURRENT_LINE[6], '%B  %d, %Y').date()
-print date
+date = datetime.strptime(CURRENT_LINE[6], '%B  %d, %Y')
+print date.date()
 
 
-def string_to_date(string):
-    """Turn string object into date"""
-    date_to_return = datetime.strptime(string, '%B  %d, %Y').date()
-    return date_to_return
 
 insert_statement = ("INSERT INTO available_assets"
                     "(name, asset_id, purchased_on)"
@@ -76,7 +71,7 @@ insert_statement = ("INSERT INTO available_assets"
 
 insert_values = {'name': CURRENT_LINE[1],
                  'asset_id': CURRENT_LINE[3],
-                 'purchased_on': string_to_date(CURRENT_LINE[6]), }
+                 'purchased_on': date.date(), }
 
 print insert_values
 
