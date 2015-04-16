@@ -65,13 +65,47 @@ print date.date()
 
 
 
-insert_statement = ("INSERT INTO available_assets"
-                    "(name, asset_id, purchased_on)"
-                    "VALUES (%(name)s, %(asset_id)s, %(purchased_on)s )")
+insert_statement = (
+                    "INSERT INTO available_assets"
+                    "(name, "
+                    "model, "
+                    "asset_id, "
+                    "description, "
+                    "created_by, "
+                    "purchased_on, "
+                    "price_$, "
+                    "`group`, "
+                    "sub_group, "
+                    "vendor, "
+                    "location, "
+                    "allocated_to)"
+                    "VALUES"
+                    "(%(name)s, "
+                    "%(model)s, "
+                    "%(asset_id)s, "
+                    "%(description)s, "
+                    "%(created_by)s, "
+                    "%(purchased_on)s, "
+                    "%(price_$)s, "
+                    "%(group)s, "
+                    "%(sub_group)s, "
+                    "%(vendor)s, "
+                    "%(location)s, "
+                    "%(allocated_to)s)"
+                   )
 
 insert_values = {'name': CURRENT_LINE[1],
+                 'model': CURRENT_LINE[2],
                  'asset_id': CURRENT_LINE[3],
-                 'purchased_on': date.date(), }
+                 'description': CURRENT_LINE[4],
+                 'created_by': CURRENT_LINE[5],
+                 'purchased_on': date.date(),
+                 'price_$': CURRENT_LINE[7],
+                 'group': CURRENT_LINE[8],
+                 'sub_group': CURRENT_LINE[9],
+                 'vendor': CURRENT_LINE[10],
+                 'location': CURRENT_LINE[11],
+                 'allocated_to': CURRENT_LINE[12]}
 
 print insert_values
 
