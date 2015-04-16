@@ -15,7 +15,7 @@ CSV_PATH = sys.argv[1]
 CSV_FILE = None
 CURRENT_LINE = None
 CURSOR = None
-DB_NAME = 'Assets'
+DB_NAME = 'assets'
 
 #Show ALL the debug info by default
 logging.basicConfig(level=logging.DEBUG)
@@ -46,6 +46,8 @@ def create_database(cursor):
 
 
 create_database(CURSOR)
+CONNECTION = connector.connect(user=config.database['user'], database=DB_NAME)
+CURSOR = CONNECTION.cursor()
 
 
 
@@ -63,12 +65,22 @@ date = datetime.strptime(CURRENT_LINE[6], '%B  %d, %Y').date()
 print date
 
 
-date = {'date': datetime.strptime(CURRENT_LINE[6], '%B  %d, %Y').date()}
-
-print date['date']
-
-
 def string_to_date(string):
     """Turn string object into date"""
     date_to_return = datetime.strptime(string, '%B  %d, %Y').date()
-    return date_to_returnf
+    return date_to_return
+
+insert_statement = ("INSERT INTO available_assets"
+                    "(name, asset_id, purchased_on)"
+                    "VALUES (%(name)s, %(asset_id)s, %(purchased_on)s )")
+
+insert_values = {'name': CURRENT_LINE[1],
+                 'asset_id': CURRENT_LINE[3],
+                 'purchased_on': string_to_date(CURRENT_LINE[6]), }
+
+print insert_values
+
+CURSOR.execute(insert_statement, insert_values)
+CONNECTION.commit()
+CURSOR.close()
+CONNECTION.close()
