@@ -71,4 +71,4 @@ print date['date']
 def string_to_date(string):
     """Turn string object into date"""
     date_to_return = datetime.strptime(string, '%B  %d, %Y').date()
-    return date_to_return
+    return date_to_returnf
