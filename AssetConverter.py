@@ -10,14 +10,14 @@ import config
 import csv
 from datetime import datetime
 
-#This is a file that is to be converted into a database
+# This is a file that is to be converted into a database
 CSV_PATH = sys.argv[1]
 CSV_FILE = None
 CURRENT_LINE = None
 CURSOR = None
 DB_NAME = 'assets'
 
-#Show ALL the debug info by default
+# Show ALL the debug info by default
 logging.basicConfig(level=logging.DEBUG)
 
 
@@ -52,7 +52,7 @@ CURSOR = CONNECTION.cursor()
 
 
 logging.info('The current line: %s', CURRENT_LINE)
-#Parse the CSV file
+#Parse the CSV filee
 CSV_FILE = open(CSV_PATH, 'rt')
 reader = csv.reader(CSV_FILE)
 CURRENT_LINE = reader.next()
