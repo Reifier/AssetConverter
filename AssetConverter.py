@@ -4,7 +4,6 @@ __author__ = 'apinchuk'
 
 import sys
 import logging
-import MySQLdb as db
 import mysql.connector as connector
 import config
 import csv
