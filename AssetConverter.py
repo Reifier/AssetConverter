@@ -19,7 +19,7 @@ DB_NAME = 'assets'
 # Show ALL the debug info by default
 logging.basicConfig(level=logging.DEBUG)
 
-
+s
 logging.info('The file to process: %s', CSV_PATH)
 
 CSV_FILE = open(CSV_PATH)
@@ -52,10 +52,17 @@ CURSOR = CONNECTION.cursor()
 
 logging.info('The current line: %s', CURRENT_LINE)
 #Parse the CSV filee
-CSV_FILE = open(CSV_PATH, 'rt')
+CSV_FILE = open(CSV_PATH, 'rU')
 reader = csv.reader(CSV_FILE)
 CURRENT_LINE = reader.next()
 CURRENT_LINE = reader.next()
+
+new_line_filtered = (line.replace('\n', ' ') for line in CSV_FILE)
+tab_filtered = (line.replace('\t', ' ') for line in new_line_filtered)
+
+for row in csv.reader(tab_filtered):
+    print row
+
 print CURRENT_LINE
 
 print CURRENT_LINE[6]
