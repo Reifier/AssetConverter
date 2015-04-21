@@ -1,6 +1,6 @@
 #!/usr/bin/evn python2
 
-__author__ = 'apinchuk'
+__author__ = 'apinchuke'
 
 import sys
 import logging
@@ -49,9 +49,8 @@ CONNECTION = connector.connect(user=config.database['user'], database=DB_NAME)
 CURSOR = CONNECTION.cursor()
 
 
-
 logging.info('The current line: %s', CURRENT_LINE)
-#Parse the CSV filee
+# Parse the CSV file
 CSV_FILE = open(CSV_PATH, 'rU')
 reader = csv.reader(CSV_FILE)
 CURRENT_LINE = reader.next()
@@ -71,8 +70,7 @@ print date.date()
 
 
 
-insert_statement = (
-                    "INSERT INTO available_assets"
+insert_statement = ("INSERT INTO available_assets"
                     "(name, "
                     "model, "
                     "asset_id, "
@@ -97,8 +95,7 @@ insert_statement = (
                     "%(sub_group)s, "
                     "%(vendor)s, "
                     "%(location)s, "
-                    "%(allocated_to)s)"
-                   )
+                    "%(allocated_to)s)")
 
 insert_values = {'name': CURRENT_LINE[1],
                  'model': CURRENT_LINE[2],
