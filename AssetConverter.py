@@ -19,7 +19,7 @@ DB_NAME = 'assets'
 # Show ALL the debug info by default
 logging.basicConfig(level=logging.DEBUG)
 
-s
+
 logging.info('The file to process: %s', CSV_PATH)
 
 CSV_FILE = open(CSV_PATH)
